@@ -95,8 +95,12 @@ function AuthProvider({ children }) {
         }
     }
 
+    const cancelVerification = () => {
+        setVerificationEmail(null);
+    }
+
     return (
-        <AuthContext.Provider value={{ token, login, register, verificationEmail, verify }}>
+        <AuthContext.Provider value={{ token, login, register, verificationEmail, verify, cancelVerification }}>
             {children}
         </AuthContext.Provider>
     )

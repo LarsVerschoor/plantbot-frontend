@@ -10,22 +10,6 @@ function Register() {
     const navigate = useNavigate();
     const { register, verificationEmail, token } = useContext(AuthContext);
 
-    useEffect(() => {
-        if (verificationEmail !== null) {
-            navigate('/verify');
-            return;
-        }
-        if (token !== null) {
-            navigate('/');
-        }
-    }, []);
-
-    useEffect(() => {
-        if (verificationEmail !== null) {
-            navigate('/verify');
-        }
-    }, [verificationEmail]);
-
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -51,7 +35,7 @@ function Register() {
 
     return (
         <AuthCard title="Create your account">
-            <form method="post" onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <form method="post" onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
                     <label htmlFor="email">Email-address</label>
                     <Input id="email" name="email" type="text" value={formData.email} onChange={handleInputChange}/>

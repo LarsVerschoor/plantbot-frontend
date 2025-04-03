@@ -7,8 +7,7 @@ import { AuthContext } from "../Contexts/Auth.jsx";
 import { useNavigate } from "react-router";
 
 function Login() {
-    const navigate = useNavigate();
-    const { login, token } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -16,18 +15,6 @@ function Login() {
     });
 
     const [error, setError] = useState(null);
-
-    useEffect(() => {
-        if (token !== null) {
-            navigate('/');
-        }
-    }, []);
-
-    useEffect(() => {
-        if (token !== null) {
-            navigate('/');
-        }
-    }, [token]);
 
     const handleInputChange = (event) => {
         setError(null);
@@ -47,7 +34,7 @@ function Login() {
 
     return (
         <AuthCard title="Log in to your account">
-            <form method="post" onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <form method="post" onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
                     <label htmlFor="email">Email-address</label>
                     <Input id="email" name="email" type="text" value={formData.email} onChange={handleInputChange}/>

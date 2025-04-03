@@ -3,11 +3,10 @@ import { useNavigate } from "react-router";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Contexts/Auth.jsx";
 import Button from "../Components/Button.jsx";
-import InternalLink from "../Components/InternalLink.jsx";
 
 function Verify() {
     const navigate = useNavigate();
-    const { verify, token, verificationEmail } = useContext(AuthContext);
+    const { verify, verificationEmail, cancelVerification } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         code1: '',
@@ -21,21 +20,15 @@ function Verify() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (token !== null) {
-            navigate('/');
-            return;
-        }
-
         if (verificationEmail === null) {
-            navigate('/register');
+            setError('Failed to find your e-mail');
         }
     }, []);
 
-    useEffect(() => {
-        if (token !== null) {
-            navigate('/');
-        }
-    }, [token]);
+    const handleCancelVerification = () => {
+        cancelVerification();
+        navigate('/register');
+    }
 
     const handleInputChange = (event) => {
         setError(null);
@@ -76,13 +69,15 @@ function Verify() {
                         Object.keys(formData).map((key) => (
                             <input type="text" maxLength="1" id={key} key={key} name={key} value={formData[key]}
                                    onChange={handleInputChange}
-                                   className="box-content w-ch-1 px-3 py-2 border-2 border-gray-300 outline-none rounded-md focus:border-green-600 focus:ring-0 text-center"/>
+                                   className="box-content w-ch-1 px-3 py-2 border-2 border-gray-400 outline-none rounded-md focus:border-green-600 focus:ring-0 text-center"/>
                         ))
                     }
                 </div>
                 {error && <p className="bg-red-200 border-2 border-red-900 text-red-900 rounded-md px-3 py-2 font-semibold">{error}</p>}
-                <Button type="submit" id="submit">Verify</Button>
-                <div>Already verified? <InternalLink to="/login">Log in</InternalLink> instead</div>
+                <div className="flex flex-col gap-2">
+                    <Button type="submit" id="submit">Verify</Button>
+                    <Button type="button" style="secondary" onClick={handleCancelVerification}>Cancel</Button>
+                </div>
             </form>
         </AuthCard>
     );
