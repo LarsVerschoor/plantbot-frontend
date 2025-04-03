@@ -6,7 +6,7 @@ import { AuthContext } from "./Contexts/Auth.jsx";
 
 function Layout() {
     const navigate = useNavigate();
-    const {verificationEmail} = useContext(AuthContext);
+    const { verificationEmail } = useContext(AuthContext);
 
     useEffect(() => {
         (() => {

@@ -28,7 +28,7 @@ function Register() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const {email, password} = formData;
+        const { email, password } = formData;
         const result = await register(email, password);
         if (!result.success) setError(result.message);
     }
@@ -45,7 +45,8 @@ function Register() {
                     <Input id="password" name="password" type="password" value={formData.password}
                            onChange={handleInputChange}/>
                 </div>
-                {error && <p className="bg-red-200 border-2 border-red-900 text-red-900 rounded-md px-3 py-2 font-semibold">{error}</p>}
+                {error &&
+                    <p className="bg-red-200 border-2 border-red-900 text-red-900 rounded-md px-3 py-2 font-semibold">{error}</p>}
                 <Button type="submit">Register</Button>
                 <div>Already have an account? <InternalLink to="/login">Log in</InternalLink></div>
             </form>

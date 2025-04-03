@@ -73,7 +73,8 @@ function Verify() {
                         ))
                     }
                 </div>
-                {error && <p className="bg-red-200 border-2 border-red-900 text-red-900 rounded-md px-3 py-2 font-semibold">{error}</p>}
+                {error &&
+                    <p className="bg-red-200 border-2 border-red-900 text-red-900 rounded-md px-3 py-2 font-semibold">{error}</p>}
                 <div className="flex flex-col gap-2">
                     <Button type="submit" id="submit">Verify</Button>
                     <Button type="button" style="secondary" onClick={handleCancelVerification}>Cancel</Button>

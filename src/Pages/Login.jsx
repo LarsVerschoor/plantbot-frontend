@@ -44,7 +44,8 @@ function Login() {
                     <Input id="password" name="password" type="password" value={formData.password}
                            onChange={handleInputChange}/>
                 </div>
-                {error && <p className="bg-red-200 border-2 border-red-900 text-red-900 rounded-md px-3 py-2 font-semibold">{error}</p>}
+                {error &&
+                    <p className="bg-red-200 border-2 border-red-900 text-red-900 rounded-md px-3 py-2 font-semibold">{error}</p>}
                 <Button type="submit">Log in</Button>
                 <div>Don't have an account? <InternalLink to="/register">Sign up</InternalLink></div>
             </form>

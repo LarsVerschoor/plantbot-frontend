@@ -63,8 +63,8 @@ function AuthProvider({ children }) {
             if (!registeredEmail) throw new Error('Registration failed');
             setVerificationEmail(registeredEmail);
             return { success: true }
-        } catch(error) {
-            return {success: false, message: error.message}
+        } catch (error) {
+            return { success: false, message: error.message }
         }
     }
 
