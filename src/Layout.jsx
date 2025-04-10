@@ -6,13 +6,19 @@ import { AuthContext } from "./Contexts/Auth.jsx";
 
 function Layout() {
     const navigate = useNavigate();
-    const { verificationEmail } = useContext(AuthContext);
+    const { verificationEmail, token } = useContext(AuthContext);
 
     useEffect(() => {
         (() => {
             if (verificationEmail !== null) return navigate('/verify');
         })()
     }, [verificationEmail, navigate]);
+
+    useEffect(() => {
+        (() => {
+            if (token === null) return navigate('/login');
+        })()
+    }, [token, navigate]);
 
     return (
         <div className="bg-gray-100 min-h-svh flex flex-col items-center">

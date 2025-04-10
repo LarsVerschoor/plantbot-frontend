@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-
+const URL = import.meta.env.VITE_BACKEND_URL
 const AuthContext = createContext();
-const URL = 'https://plantbot.nl';
 
 function AuthProvider({ children }) {
     const [token, setToken] = useState(JSON.parse(localStorage.getItem('jwt')));

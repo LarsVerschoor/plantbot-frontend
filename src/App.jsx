@@ -8,6 +8,7 @@ import Verify from "./Pages/Verify.jsx";
 import { AuthProvider } from "./Contexts/Auth.jsx";
 import Plants from "./Pages/Plants.jsx";
 import Plantbots from "./Pages/Plantbots.jsx";
+import Connect from "./Pages/Connect.jsx";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: '/plantbots',
                 element: <Plantbots/>
+            },
+            {
+                path: '/connect-plantbot',
+                element: <Connect/>
             }
         ]
     },
