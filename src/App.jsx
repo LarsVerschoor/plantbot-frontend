@@ -1,5 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
+
+import ProtectedRoute from "./ProtectedRoute.jsx";
+import GuestRoute from "./GuestRoute.jsx";
+
 import Layout from "./Layout.jsx";
+
 import Home from "./Pages/Home.jsx";
 import AuthLayout from "./AuthLayout.jsx";
 import Login from "./Pages/Login.jsx";
@@ -15,20 +20,25 @@ const router = createBrowserRouter([
         element: <Layout/>,
         children: [
             {
-                path: '/',
-                element: <Home/>
-            },
-            {
-                path: '/plants',
-                element: <Plants/>
-            },
-            {
-                path: '/plantbots',
-                element: <Plantbots/>
-            },
-            {
-                path: '/connect-plantbot',
-                element: <Connect/>
+                element: <ProtectedRoute/>,
+                children: [
+                    {
+                        path: '/',
+                        element: <Home/>
+                    },
+                    {
+                        path: '/plants',
+                        element: <Plants/>
+                    },
+                    {
+                        path: '/plantbots',
+                        element: <Plantbots/>
+                    },
+                    {
+                        path: '/connect-plantbot',
+                        element: <Connect/>
+                    }
+                ]
             }
         ]
     },
@@ -36,12 +46,17 @@ const router = createBrowserRouter([
         element: <AuthLayout/>,
         children: [
             {
-                path: '/login',
-                element: <Login/>
-            },
-            {
-                path: '/register',
-                element: <Register/>
+                element: <GuestRoute/>,
+                children: [
+                    {
+                        path: '/login',
+                        element: <Login/>
+                    },
+                    {
+                        path: '/register',
+                        element: <Register/>
+                    }
+                ]
             },
             {
                 path: '/verify',
