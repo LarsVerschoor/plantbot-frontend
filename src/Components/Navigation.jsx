@@ -8,7 +8,7 @@ function Navigation() {
     const isCurrent = (path) => location.pathname === path;
 
     return (
-        <nav className="bg-white rounded-b-md shadow-lg px-4 py-3 w-full">
+        <nav className="bg-white rounded-b-md shadow-md px-4 py-3 w-full">
             <div className="max-w-page flex justify-between mx-auto">
                 <Link to="/" className="flex items-center"><img src={logo} alt="PlantBot logo" width="180"
                                                                 className="p-4"/></Link>
