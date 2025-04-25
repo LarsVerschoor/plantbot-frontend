@@ -35,42 +35,50 @@ function Chat() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { question } = formData;
-        const updatedHistory = [
-            ...chatHistory,
-            ['human', question]
-        ]
-        setChatHistory(updatedHistory);
-        setFormData({ question: '' });
-        setStreaming('');
-        const response = await fetch(`${URL}/chat`, {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                chatHistory: updatedHistory
-            })
-        });
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder('utf-8');
-        let endResult = '';
 
-        while (true) {
-            const { value, done } = await reader.read();
-            if (done) break;
+        try {
+            const { question } = formData;
+            const updatedHistory = [
+                ...chatHistory,
+                ['human', question]
+            ]
+            setChatHistory(updatedHistory);
+            setFormData({ question: '' });
+            setStreaming('');
+            const response = await fetch(`${URL}/chat`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    chatHistory: updatedHistory
+                })
+            });
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder('utf-8');
+            let endResult = '';
 
-            const chunk = decoder.decode(value, { stream: true });
-            endResult += chunk;
-            setStreaming(endResult);
-            console.log(chunk);
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                endResult += chunk;
+                setStreaming(endResult);
+                console.log(chunk);
+            }
+            setChatHistory((prevState) => ([
+                ...prevState,
+                ['assistant', endResult ?? 'Failed to generate a response']
+            ]));
+            setStreaming(null);
+        } catch (error) {
+            setChatHistory((prevState) => ([
+                ...prevState,
+                ['assistant', 'Failed to generate a response']
+            ]));
         }
-        setChatHistory((prevState) => ([
-            ...prevState,
-            ['assistant', endResult ?? 'Failed to generate a response']
-        ]));
-        setStreaming(null);
     }
 
     return (
