@@ -14,6 +14,7 @@ import { AuthProvider } from "./Contexts/Auth.jsx";
 import Plants from "./Pages/Plants.jsx";
 import Plantbots from "./Pages/Plantbots.jsx";
 import Connect from "./Pages/Connect.jsx";
+import Chat from "./Pages/Chat.jsx";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
                     {
                         path: '/connect-plantbot',
                         element: <Connect/>
+                    },
+                    {
+                        path: '/chat',
+                        element: <Chat/>
                     }
                 ]
             }

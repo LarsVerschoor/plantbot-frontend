@@ -1,10 +1,9 @@
 import AuthCard from "../Components/AuthCard.jsx";
 import Button from "../Components/Button.jsx";
 import Input from "../Components/Input.jsx";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import InternalLink from "../Components/InternalLink.jsx";
 import { AuthContext } from "../Contexts/Auth.jsx";
-import { useNavigate } from "react-router";
 
 function Login() {
     const { login } = useContext(AuthContext);
