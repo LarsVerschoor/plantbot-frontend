@@ -78,6 +78,7 @@ function Chat() {
                 ...prevState,
                 ['assistant', 'Failed to generate a response']
             ]));
+            setStreaming(null);
         }
     }
 
