@@ -1,16 +1,41 @@
-# React + Vite
+# plantbot-frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## How to set up:
 
-Currently, two official plugins are available:
+1. Clone repository.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md)
-  uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast
-  Refresh
+```bash
+git clone https://github.com/LarsVerschoor/plantbot-frontend.git
+```
 
-## Expanding the ESLint configuration
+2. Navigate to the created directory.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check
-out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate
-TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+cd plantbot-frontend
+```
+
+3. Install dependencies.
+
+```bash
+npm install
+```
+
+4. Rename .env.development.example and .env.production.example to exclude .example and enter the URL.
+
+```text
+VITE_BACKEND_URL=https://example.com
+```
+
+## How to run:
+
+Vite run development
+
+```bash
+npm run dev
+```
+
+Vite build production
+
+```bash
+npm run build
+```
